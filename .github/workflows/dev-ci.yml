@@ -30,6 +30,10 @@ jobs:
           submodules: true
           token: ${{ secrets.GIT_TOKEN }}
 
+      - name: Chatting Backend Submodule에서 application yaml 복사
+        run: |
+          cp ./chatting_backend/application.yaml ./application.yaml
+
       - name: JDK 21 세팅
         uses: actions/setup-java@v4
         with:
@@ -50,7 +54,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: 테스트 진행
-        run: ./gradlew test -Dspring.profiles.active=test
+        run: ./gradlew test
 
       - name: 🍀 테스트 결과 Report
         uses: mikepenz/action-junit-report@v3
