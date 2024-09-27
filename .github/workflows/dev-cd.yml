@@ -32,6 +32,16 @@ jobs:
           java-version: '21'
           distribution: 'corretto'
 
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.7.0
+        with:
+          redis-version: 6
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.11.0
+        with:
+          mongodb-version: 7.0
+
       - name: gradlew에 실행 권한 부여
         run: chmod +x ./gradlew
 

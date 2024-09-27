@@ -1,4 +1,4 @@
-name: PROD-CI
+name: DEV-CI
 
 on:
   pull_request:
@@ -12,6 +12,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
 
       - name: Pull Request URL 가져오기
@@ -36,6 +37,16 @@ jobs:
           java-version: '21'
           distribution: 'corretto'
 
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.7.0
+        with:
+          redis-version: 6
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.11.0
+        with:
+          mongodb-version: 7.0
+
       - name: Gradle 캐시 설정
         uses: actions/cache@v3
         with:
@@ -50,7 +61,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: 테스트 진행
-        run: ./gradlew test -Dspring.profiles.active=test
+        run: ./gradlew test
 
       - name: 🍀 테스트 결과 Report
         uses: mikepenz/action-junit-report@v3
