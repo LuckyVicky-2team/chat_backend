@@ -1,0 +1,80 @@
+name: dev-cd
+run-name: dev-cd
+on:
+  push:
+    branches:
+      - dev
+env:
+  AWS_S3_BUCKET: chatting-backend-dev-deploy
+  AWS_CODE_DEPLOY_APPLICATION: chatting-backend-dev-app
+  AWS_CODE_DEPLOY_GROUP: chatting-backend-dev-group
+
+
+jobs:
+  build-with-gradle:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Pull Request URL 가져오기
+        id: pr-url
+        run: |
+          PR_URL=$(jq -r .pull_request.html_url "$GITHUB_EVENT_PATH")
+          echo "PR_URL=${PR_URL}" >> $GITHUB_ENV
+
+      - name: 서브모듈 추가
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - name: JDK 21 설치
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.7.0
+        with:
+          redis-version: 6
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.11.0
+        with:
+          mongodb-version: 7.0
+
+      - name: gradlew에 실행 권한 부여
+        run: chmod +x ./gradlew
+
+      - name: Gradle 캐시 설정
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-  
+
+      - name: RestDocs 문서 생성
+        run: ./gradlew clean createDocument
+
+      - name: 프로젝트 빌드
+        run: ./gradlew -Dspring.profiles.active=dev build -x test
+
+      - name: AWS credential 설정
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ap-northeast-2
+          aws-access-key-id: ${{ secrets.DEV_CD_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.DEV_CD_SECRET_KEY }}
+      - name: S3에 업로드
+        run: aws deploy push --application-name ${{ env.AWS_CODE_DEPLOY_APPLICATION }} --ignore-hidden-files --s3-location s3://$AWS_S3_BUCKET/$GITHUB_SHA.zip --source .
+      - name: EC2에 배포
+        run: aws deploy create-deployment --application-name ${{ env.AWS_CODE_DEPLOY_APPLICATION }} --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name ${{ env.AWS_CODE_DEPLOY_GROUP }} --s3-location bucket=$AWS_S3_BUCKET,key=$GITHUB_SHA.zip,bundleType=zip
+
+      - name: 🍀 테스트 실패시 디스코드 알림
+        if: failure()
+        uses: tsickert/discord-webhook@v5.3.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          content: "테스트 실패: ${{ github.repository }} \nPR 주소 : ${{ env.PR_URL }}"
