@@ -1,3 +1,6 @@
 [submodule "board-submodule"]
 	path = board-submodule
 	url = git@github.com:LuckyVicky-2team/board-submodule.git
+[submodule "chat_submodule"]
+	path = chat_submodule
+	url = git@github.com:LuckyVicky-2team/chat_submodule.git
