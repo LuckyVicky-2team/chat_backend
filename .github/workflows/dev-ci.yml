@@ -31,10 +31,6 @@ jobs:
           submodules: true
           token: ${{ secrets.GIT_TOKEN }}
 
-      - name: Chatting Backend Submodule에서 application yaml 복사
-        run: |
-          cp ./backend/chatting_backend/application.yaml ./application.yaml
-
       - name: JDK 21 세팅
         uses: actions/setup-java@v4
         with:
