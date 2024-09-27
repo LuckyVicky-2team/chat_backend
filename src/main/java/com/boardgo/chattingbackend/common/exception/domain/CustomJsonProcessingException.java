@@ -1,4 +1,4 @@
-package com.boardgo.chatingbackend.common.exception.domain;
+package com.boardgo.chattingbackend.common.exception.domain;
 
 public class CustomJsonProcessingException extends RuntimeException {
 	public CustomJsonProcessingException(String message) {

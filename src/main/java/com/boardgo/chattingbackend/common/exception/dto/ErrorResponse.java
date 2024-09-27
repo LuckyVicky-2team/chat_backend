@@ -1,4 +1,4 @@
-package com.boardgo.chatingbackend.common.exception.dto;
+package com.boardgo.chattingbackend.common.exception.dto;
 
 import lombok.Builder;
 

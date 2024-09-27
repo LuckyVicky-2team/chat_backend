@@ -1,11 +1,11 @@
-package com.boardgo.chatingbackend.domain.chat.controller;
+package com.boardgo.chattingbackend.domain.chat.controller;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
 
-import com.boardgo.chatingbackend.domain.chat.controller.request.ChatRequest;
-import com.boardgo.chatingbackend.domain.chat.service.ChatPublisher;
+import com.boardgo.chattingbackend.domain.chat.controller.request.ChatRequest;
+import com.boardgo.chattingbackend.domain.chat.service.ChatPublisher;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

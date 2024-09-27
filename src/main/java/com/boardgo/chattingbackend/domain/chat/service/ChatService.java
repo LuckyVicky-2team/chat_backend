@@ -1,11 +1,11 @@
-package com.boardgo.chatingbackend.domain.chat.service;
+package com.boardgo.chattingbackend.domain.chat.service;
 
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.boardgo.chatingbackend.domain.chat.entity.ChatMessage;
-import com.boardgo.chatingbackend.domain.chat.repository.ChatRepository;
+import com.boardgo.chattingbackend.domain.chat.entity.ChatMessage;
+import com.boardgo.chattingbackend.domain.chat.repository.ChatRepository;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,12 +1,12 @@
-package com.boardgo.chatingbackend.domain.chat.service;
+package com.boardgo.chattingbackend.domain.chat.service;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.boardgo.chatingbackend.domain.chat.controller.request.ChatRequest;
-import com.boardgo.chatingbackend.domain.chat.entity.ChatMessage;
-import com.boardgo.chatingbackend.domain.chat.mapper.ChatMapper;
+import com.boardgo.chattingbackend.domain.chat.controller.request.ChatRequest;
+import com.boardgo.chattingbackend.domain.chat.entity.ChatMessage;
+import com.boardgo.chattingbackend.domain.chat.mapper.ChatMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

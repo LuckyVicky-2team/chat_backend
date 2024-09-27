@@ -1,12 +1,12 @@
-package com.boardgo.chatingbackend.common.exception;
+package com.boardgo.chattingbackend.common.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.boardgo.chatingbackend.common.exception.domain.CustomJsonProcessingException;
-import com.boardgo.chatingbackend.common.exception.dto.ErrorResponse;
+import com.boardgo.chattingbackend.common.exception.domain.CustomJsonProcessingException;
+import com.boardgo.chattingbackend.common.exception.dto.ErrorResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionControllerAdvice {

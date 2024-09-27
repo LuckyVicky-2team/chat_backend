@@ -1,13 +1,13 @@
-package com.boardgo.chatingbackend;
+package com.boardgo.chattingbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ChatingBackendApplication {
+public class ChattingBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ChatingBackendApplication.class, args);
+		SpringApplication.run(ChattingBackendApplication.class, args);
 	}
 
 }

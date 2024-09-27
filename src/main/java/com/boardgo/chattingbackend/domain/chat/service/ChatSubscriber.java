@@ -1,11 +1,11 @@
-package com.boardgo.chatingbackend.domain.chat.service;
+package com.boardgo.chattingbackend.domain.chat.service;
 
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.stereotype.Service;
 
-import com.boardgo.chatingbackend.common.exception.domain.CustomJsonProcessingException;
-import com.boardgo.chatingbackend.domain.chat.entity.ChatMessage;
+import com.boardgo.chattingbackend.common.exception.domain.CustomJsonProcessingException;
+import com.boardgo.chattingbackend.domain.chat.entity.ChatMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

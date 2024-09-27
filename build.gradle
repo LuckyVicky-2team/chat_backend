@@ -63,7 +63,7 @@ compileJava {
 processResources.dependsOn('copySubmodule')
 
 tasks.register('copySubmodule', Copy) {
-    from('./board-submodule/backend') {
+    from('./board-submodule/chatting_backend') {
         include('*.yml')
     }
     into('src/main/resources')

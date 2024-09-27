@@ -1,4 +1,4 @@
-package com.boardgo.chatingbackend.config;
+package com.boardgo.chattingbackend.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

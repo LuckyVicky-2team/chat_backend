@@ -1,4 +1,4 @@
-package com.boardgo.chatingbackend.domain.chat.entity;
+package com.boardgo.chattingbackend.domain.chat.entity;
 
 import java.time.LocalDateTime;
 

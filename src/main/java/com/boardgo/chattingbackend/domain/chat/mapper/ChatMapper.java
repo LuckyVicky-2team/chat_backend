@@ -1,11 +1,11 @@
-package com.boardgo.chatingbackend.domain.chat.mapper;
+package com.boardgo.chattingbackend.domain.chat.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-import com.boardgo.chatingbackend.domain.chat.controller.request.ChatRequest;
-import com.boardgo.chatingbackend.domain.chat.entity.ChatMessage;
+import com.boardgo.chattingbackend.domain.chat.controller.request.ChatRequest;
+import com.boardgo.chattingbackend.domain.chat.entity.ChatMessage;
 
 @Mapper
 public interface ChatMapper {
