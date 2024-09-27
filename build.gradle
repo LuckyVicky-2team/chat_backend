@@ -59,6 +59,16 @@ compileJava {
     ]
 }
 
+
+processResources.dependsOn('copySubmodule')
+
+tasks.register('copySubmodule', Copy) {
+    from('./board-submodule/backend') {
+        include('*.yml')
+    }
+    into('src/main/resources')
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
